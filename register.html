@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Brush+Script+MT&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f5;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .background {
+            position: absolute;
+            width: 110%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .circle1 {
+            width: 100px;
+            height: 100px;
+            background-color: #ff6b6b;
+            top: 20%;
+            left: 30%;
+            animation-duration: 8s;
+        }
+
+        .circle2 {
+            width: 60px;
+            height: 60px;
+            background-color: #f50057;
+            top: 50%;
+            left: 70%;
+            animation-duration: 6s;
+        }
+
+        .circle3 {
+            width: 80px;
+            height: 80px;
+            background-color: #02022c;
+            top: 70%;
+            left: 20%;
+            animation-duration: 7s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .main-content {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: #02022c;
+            box-sizing: border-box;
+        }
+
+        .register-btn {
+            width: 100%;
+            height: 3em;
+            border-radius: 30em;
+            font-size: 15px;
+            font-family: inherit;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            color: white;
+            background-color:#f50057;
+            margin-top: 15px;
+        }
+
+        .register-btn::before {
+            content: '';
+            width: 0;
+            height: 3em;
+            border-radius: 30em;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-image: linear-gradient(to right, #02022c, #ab1efc 100%);
+            transition: .5s ease;
+            display: block;
+            z-index: -1;
+        }
+
+        .register-btn:hover::before {
+            width: 100%;
+        }
+
+        p {
+            font-size: 12px;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        p a {
+            color: #02022c;
+            text-decoration: none;
+        }
+
+        p a:hover {
+            text-decoration: underline;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Background Circles -->
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
+
+    <!-- Main Content Container -->
+    <div class="main-content">
+        <h1>Register</h1>
+        <form id="register-form">
+            <input type="text" id="first-name" placeholder="First Name" required><br>
+            <input type="text" id="last-name" placeholder="Last Name" required><br>
+            <input type="tel" id="phone-number" placeholder="Phone Number" required><br>
+            <input type="email" id="email-id" placeholder="Email ID" required><br>
+            <input type="password" id="create-password" placeholder="Create Password" required><br>
+            <input type="password" id="confirm-password" placeholder="Confirm Password" required><br>
+            <button class="register-btn" type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="#">Login here</a></p>
+    </div>
+
+    <script>
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Get form values
+            const firstName = document.getElementById('first-name').value;
+            const lastName = document.getElementById('last-name').value;
+            const phoneNumber = document.getElementById('phone-number').value;
+            const emailId = document.getElementById('email-id').value;
+            const createPassword = document.getElementById('create-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+
+            // Basic validation
+            if (createPassword !== confirmPassword) {
+                alert('Passwords do not match.');
+                return;
+            }
+
+            // Handle form submission (e.g., send data to server)
+            alert(`Registration successful!\nName: ${firstName} ${lastName}\nPhone: ${phoneNumber}\nEmail: ${emailId}`);
+        });
+    </script>
+</body>
+</html>

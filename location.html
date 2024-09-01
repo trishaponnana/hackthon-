@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fa;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 218px;
+            background-color: #02022c;
+            color: #fff;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            border-radius: 5px;
+        }
+
+        .sidebar .profile {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar .profile img {
+            width: 111px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar nav ul li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar nav ul li a:hover {
+            background-color: #333;
+            color: #fff;
+        }
+        .otp-container {
+            display: flex;
+    gap: 700px;
+    margin-left: 345px;
+   
+            background: rgba(255, 255, 255, 0.1); /* Transparent background */
+            padding: 10px;
+            margin-top: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px); /* For a frosted glass effect */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center; /* Aligns items vertically in the center */
+            justify-content: space-between; /* Aligns items horizontally with space between */
+            transition: transform 0.3s ease; /* Add transition for transform */
+}
+
+.otp-container:hover {
+    transform: scale(1.05); /* Enlarge container on hover */
+}
+
+
+
+        h2 {
+            color: #02022c;
+            margin-left: 20px;
+        }
+
+        .switch {
+            font-size: 17px;
+            position: relative;
+            display: inline-block;
+            width: 3.5em;
+            height: 2em;
+            margin-right: 20px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #B0B0B0;
+            border: 1px solid #B0B0B0;
+            transition: .4s;
+            border-radius: 32px;
+            outline: none;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 2rem;
+            width: 2rem;
+            border-radius: 50%;
+            outline: 2px solid #B0B0B0;
+            left: -1px;
+            bottom: -1px;
+            background-color: #fff;
+            transition: transform .25s ease-in-out 0s;
+        }
+
+        .slider-icon {
+            opacity: 0;
+            height: 12px;
+            width: 12px;
+            stroke-width: 8;
+            position: absolute;
+            z-index: 999;
+            stroke: #033720;
+            right: 60%;
+            top: 30%;
+            transition: right ease-in-out .3s, opacity ease-in-out .15s;
+        }
+
+        input:checked + .slider {
+            background-color:#02022c;
+        }
+
+        input:checked + .slider .slider-icon {
+            opacity: 1;
+            right: 20%;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(1.5em);
+            outline-color: #02022c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="profile">
+                <img src="profile.jpg" alt="Profile Image">
+                <h3>Adam Johnson</h3>
+                <p>adamjohnson@gmail.com</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="userscale.html">Attendance</a></li>
+                    <li><a href="location.html">Location</a></li>
+                    <li><a href="manual.html">Manual Checkin/Out</a></li>
+                    <li><a href="home.html"><b>Dashboard</b></a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="otp-container">
+            <h2>Location</h2>
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation">
+                        <path fill="none" d="m4 16.5 8 8 16-16"></path>
+                    </svg>
+                </span>
+            </label>
+        </div>
+        <script>
+            // Wait for the DOM to be fully loaded
+            document.addEventListener("DOMContentLoaded", function () {
+                const menuButton = document.querySelector('.menu-open-button');
+                const slideMenu = document.querySelector('.slide-menu');
+    
+                // Toggle menu visibility
+                menuButton.addEventListener('click', function () {
+                    menuButton.classList.toggle('active');
+                    slideMenu.classList.toggle('open');
+                });
+            });
+        </script>
+    </body>
+    </html>
+    

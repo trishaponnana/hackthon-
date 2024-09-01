@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>manual</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fa;
+            display: flex; /* Use flex to align content */
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 218px;
+            background-color: #02022c;
+            color: #fff;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            border-radius: 5px;
+        }
+
+        .sidebar .profile {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar .profile img {
+            width: 111px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar nav ul li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar nav ul li a:hover {
+            background-color: #333;
+            color: #fff;
+        }
+
+        /* Container styles */
+        .container {
+            margin-left: 345px; /* Offset for the sidebar */
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+            max-width: 800px; /* Set max-width for centering */
+            width: 100%;
+            margin-top: 50px; /* Top margin for spacing */
+            transition: transform 0.3s ease; /* Add transition for transform */
+}
+
+.container:hover {
+    transform: scale(1.05); /* Enlarge container on hover */
+}
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .new-entry-button {
+            width: 9em;
+ height: 3em;
+ border-radius: 30em;
+ font-size: 15px;
+ font-family: inherit;
+ border: none;
+ position: relative;
+ overflow: hidden;
+ z-index: 1;
+ box-shadow: 6px 6px 12px #c5c5c5,
+             -6px -6px 12px #ffffff;
+             color: #02022c;
+             cursor: pointer;
+        }
+.new-entry-button::before {
+ content: '';
+ width: 0;
+ height: 3em;
+ border-radius: 30em;
+ position: absolute;
+ top: 0;
+ left: 0;
+ background-image: linear-gradient(to right, #02022c 0%,#f4f7fa  100%);
+
+ transition: .5s ease;
+ display: block;
+ z-index: -1;
+}
+
+.new-entry-button:hover::before {
+ width: 9em;
+ 
+}
+
+        .attendance-list h2 {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .entry {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #f4f7fa;
+        }
+
+        .entry-icon {
+            display: flex;
+            align-items: center;
+        }
+
+        .entry-icon i {
+            font-size: 24px;
+            color: #555;
+            margin-right: 10px;
+        }
+
+        .entry-details {
+            color: #333;
+        }
+
+        .entry-time {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .entry-duration {
+            font-size: 14px;
+            color: #333;
+        }
+
+        /* New Entry Form Styles */
+        .entry-form {
+            margin-bottom: 20px;
+            display: none; /* Hidden by default */
+        }
+
+        .entry-form input {
+            padding: 5px;
+            margin-right: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        /* Check-In/Out Container Styles */
+        .check-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 45px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    margin-bottom: 30px; /* Spacing between containers */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+   
+}
+
+.circle-button {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #02022c;
+    color: white;
+    border: 5px solid #f9fafad4;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s; /* Add transition for transform */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.circle-button i {
+    font-size: 24px;
+    margin-right: 5px;
+}
+
+.circle-button:hover {
+    background-color: #030335; /* Slightly darker color */
+    transform: scale(1.1); /* Enlarge button */
+}
+
+        /* Attendance Percentage Styles */
+        .attendance-percentage {
+            font-size: 18px;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        /* Chart Styles */
+        .chart-container {
+            margin-top: 20px;
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+    </style>
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="profile">
+            <img src="profile.jpg" alt="Profile Image">
+            <h3>Adam Johnson</h3>
+            <p>adamjohnson@gmail.com</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="userscale.html">Attendance</a></li>
+                <li><a href="location.html">Location</a></li>
+                <li><a href="manual.html">Manual Checkin/Out</a></li>
+                <li><a href="home.html"><b>Dashboard</b></a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="container">
+        <div class="header">
+            <h1>Attendance Tracking</h1>
+            <button class="new-entry-button" onclick="toggleEntryForm()">New Entry</button>
+        </div>
+
+        <!-- Check In/Out Container -->
+        <div class="check-container">
+            <h3> Check-in/check-Out</h3>
+            <button class="circle-button" id="toggleButton">
+                <i class="fa-solid fa-hand-pointer"></i>
+                <span id="checkInOutText">Check In</span>
+            </button>
+            <p id="dateDisplay"></p>
+            <h4 id="timeDisplay"></h4>
+        </div>
+
+        <!-- Entry Form -->
+        <div class="entry-form" id="entryForm">
+            <input type="text" id="location" placeholder="Location">
+            <input type="time" id="startTime">
+            <input type="time" id="endTime">
+            <button onclick="addEntry()">Add Entry</button>
+        </div>
+
+        <div class="attendance-list">
+            <h2>Today</h2>
+            <div id="entries"></div>
+            <div id="totalHours" style="font-size: 16px; color: #333; margin-top: 10px;"></div>
+            <div id="attendancePercentage" class="attendance-percentage"></div>
+            
+            <!-- Chart Container -->
+            <div class="chart-container">
+                <canvas id="hoursChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const entriesContainer = document.getElementById('entries');
+            const totalHoursContainer = document.getElementById('totalHours');
+            const attendancePercentageContainer = document.getElementById('attendancePercentage');
+            const checkInOutButton = document.getElementById('toggleButton');
+            const checkInOutText = document.getElementById('checkInOutText');
+            const timeDisplay = document.getElementById('timeDisplay');
+            const dateDisplay = document.getElementById('dateDisplay');
+            const ctx = document.getElementById('hoursChart').getContext('2d');
+
+            const entries = JSON.parse(localStorage.getItem('entries')) || [];
+            let checkInTime = localStorage.getItem('checkInTime') || '';
+            let checkOutTime = '';
+
+            let hoursChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Total Hours'],
+                    datasets: [{
+                        label: 'Hours Worked',
+                        data: [0],
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Hours'
+                            }
+                        }
+                    }
+                }
+            });
+
+            function calculateTotalHours() {
+                let totalSeconds = 0;
+
+                entries.forEach(entry => {
+                    const [hours, minutes] = entry.duration.split(' ')[0].split('.').map(Number);
+                    totalSeconds += (hours * 3600) + (minutes * 60);
+                });
+
+                const totalHours = (totalSeconds / 3600).toFixed(2);
+                totalHoursContainer.textContent = `Total Hours: ${totalHours} hours`;
+
+                updateChart(totalHours);
+                updateAttendancePercentage(totalSeconds);
+            }
+
+            function updateChart(totalHours) {
+                hoursChart.data.datasets[0].data = [totalHours];
+                hoursChart.update();
+            }
+
+            function renderEntries() {
+                entriesContainer.innerHTML = ''; // Clear existing entries
+
+                entries.forEach(entry => {
+                    const entryElement = document.createElement('div');
+                    entryElement.className = 'entry';
+                    entryElement.innerHTML = `
+                        <div class="entry-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="entry-details">
+                                <div>${entry.location}</div>
+                                <div class="entry-time">${entry.startTime} - ${entry.endTime}</div>
+                            </div>
+                        </div>
+                        <div class="entry-duration">${entry.duration}</div>
+                    `;
+                    entriesContainer.appendChild(entryElement);
+                });
+
+                calculateTotalHours(); // Calculate total hours after rendering entries
+            }
+
+            function updateAttendancePercentage(totalSeconds) {
+                const workDaySeconds = 8 * 3600; // Assuming 8-hour workday
+                const percentage = ((totalSeconds / workDaySeconds) * 100).toFixed(2);
+                attendancePercentageContainer.textContent = `Attendance Percentage: ${percentage}%`;
+            }
+
+            // Toggle entry form visibility
+            window.toggleEntryForm = function() {
+                const entryForm = document.getElementById('entryForm');
+                entryForm.style.display = entryForm.style.display === 'none' || entryForm.style.display === '' ? 'block' : 'none';
+            };
+
+            // Add new entry
+            window.addEntry = function() {
+                const location = document.getElementById('location').value;
+                const startTime = document.getElementById('startTime').value;
+                const endTime = document.getElementById('endTime').value;
+
+                // Calculate duration
+                const start = new Date(`1970-01-01T${startTime}:00`);
+                const end = new Date(`1970-01-01T${endTime}:00`);
+                const durationInSeconds = Math.abs((end - start) / 1000);
+                const duration = (durationInSeconds / 3600).toFixed(2) + ' hours';
+
+                // Add new entry to entries array
+                entries.push({ location, startTime, endTime, duration });
+                localStorage.setItem('entries', JSON.stringify(entries)); // Save to localStorage
+                renderEntries(); // Update the display
+                toggleEntryForm(); // Hide the form after adding
+            };
+
+            // Handle check-in/check-out
+            window.toggleCheckInOut = function() {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                const dateString = now.toLocaleDateString();
+
+                if (checkInOutText.textContent === 'Check In') {
+                    checkInOutText.textContent = 'Check Out';
+                    checkInTime = timeString;
+                    localStorage.setItem('checkInTime', checkInTime); // Save check-in time
+                    dateDisplay.textContent = dateString;
+                    timeDisplay.textContent = timeString;
+                } else {
+                    checkOutTime = timeString;
+                    const duration = calculateDuration(checkInTime, checkOutTime);
+                    entries.push({ location: 'N/A', startTime: checkInTime, endTime: checkOutTime, duration });
+                    localStorage.setItem('entries', JSON.stringify(entries)); // Save to localStorage
+                    checkInOutText.textContent = 'Check In';
+                    localStorage.removeItem('checkInTime'); // Clear check-in time
+                    renderEntries(); // Update the display
+                }
+            };
+
+            // Calculate duration between check-in and check-out
+            function calculateDuration(start, end) {
+                const [startHours, startMinutes] = start.split(':').map(Number);
+                const [endHours, endMinutes] = end.split(':').map(Number);
+
+                const startTime = new Date();
+                startTime.setHours(startHours, startMinutes, 0);
+
+                const endTime = new Date();
+                endTime.setHours(endHours, endMinutes, 0);
+
+                const durationInSeconds = Math.abs((endTime - startTime) / 1000);
+                return (durationInSeconds / 3600).toFixed(2) + ' hours';
+            }
+
+            // Initialize button event listener
+            checkInOutButton.addEventListener('click', toggleCheckInOut);
+
+            // Call the render function to display initial data
+            renderEntries();
+        });
+    </script>
+</body>
+</html>

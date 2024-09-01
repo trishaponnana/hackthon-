@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fa;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            width: 218px;
+            background-color: #02022c;
+            color: #fff;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            border-radius: 5px;
+        }
+
+        .sidebar .profile {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar .profile img {
+            width: 111px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar nav ul li {
+            margin-bottom: 15px;
+        }
+
+        .sidebar nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            display: block;
+            padding: 10px 15px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar nav ul li a:hover {
+            background-color: #333;
+            color: #fff;
+        }
+
+        /* Main content styles */
+        .main-content {
+            margin-left: 220px;
+            padding: 20px;
+            flex: 1;
+        }
+
+      
+.dashboard-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+  margin-left: 80px;
+   
+}
+
+
+.dashboard-box1 {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    flex: 1;
+    text-align: center;
+    transition: transform 0.3s ease; /* Add transition for transform */
+}
+
+.dashboard-box1:hover {
+    transform: scale(1.05); /* Enlarge container on hover */
+}
+
+
+.dashboard-box2 {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    flex: 1;
+    text-align: center;
+    transition: transform 0.3s ease; /* Add transition for transform */
+}
+
+.dashboard-box2:hover {
+    transform: scale(1.05); /* Enlarge container on hover */
+}
+
+
+.dashboard-box3 {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
+    padding: 20px;
+    flex: 1;
+    text-align: center;
+    transition: transform 0.3s ease; /* Add transition for transform */
+}
+
+.dashboard-box3:hover {
+    transform: scale(1.05); /* Enlarge container on hover */
+}
+
+
+
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 10pxpx;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
+            margin-left: 80px;
+            transition: transform 0.3s ease; /* Add transition for transform */
+}
+
+table:hover {
+    transform: scale(1.05); /* Enlarge container on hover */
+}
+        
+
+        table th, table td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 7px solid #ddd;
+        }
+
+        table th {
+            background-color: #f0f0f0;
+        }
+
+        /* Update button style */
+      /* Update button style */
+.update-button {
+    width: 9em;
+    height: 3em;
+    border-radius: 30em;
+    font-size: 15px;
+    font-family: inherit;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+    color: #02022c;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for transform */
+}
+
+.update-button::before {
+    content: '';
+    width: 0;
+    height: 3em;
+    border-radius: 30em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to right, #02022c 0%, #f4f7fa 100%);
+    transition: width 0.5s ease;
+    z-index: -1;
+}
+
+.update-button:hover::before {
+    width: 9em;
+}
+
+.update-button:hover {
+    transform: scale(1.1); /* Enlarge button */
+    box-shadow: 8px 8px 16px #b0b0b0, -8px -8px 16px #ffffff; /* Add shadow on hover */
+}
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="profile">
+                <img src="profile.jpg" alt="Profile Image">
+                <h3>Adam Johnson</h3>
+                <p>adamjohnson@gmail.com</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="userscale.html">Attendance</a></li>
+                    <li><a href="location.html">Location</a></li>
+                    <li><a href="manual.html">Manual Checkin/Out</a></li>
+                    <li><a href="home.html"><b>Dashboard</b></a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Main content -->
+        <div class="main-content">
+            <!-- Dashboard boxes -->
+            <div class="dashboard-container">
+                <div class="dashboard-box1">
+                    <h4>Attendance Total Percentage</h4>
+                    <p>85%</p>
+                </div>
+                <div class="dashboard-box2">
+                    <h4>Overall Working Time</h4>
+                    <p>120 hours</p>
+                </div>
+                <div class="dashboard-box3">
+                    <h4>Total Holidays</h4>
+                    <p>5 days</p>
+                </div>
+            </div>
+
+            <!-- Attendance Table -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Date</th>
+                        <th>Check-in Time</th>
+                        <th>Check-out Time</th>
+                      
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="attendance-table-body">
+                    <!-- Table rows will be added dynamically using JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Sample data for attendance records
+        const attendanceData = [
+            { sno: 1, id: 'EMP001', username: 'John Doe', date: '2024-08-30', checkin: '09:00 AM', checkout: '05:00 PM', workedTime: '8h' },
+            { sno: 2, id: 'EMP0021', username: 'John Doe', date: '2024-08-30', checkin: '08:45 AM', checkout: '04:45 PM', workedTime: '8h' },
+            // Add more data as needed
+        ];
+
+        // Function to render the attendance table rows
+        function renderTableRows() {
+            const tableBody = document.getElementById('attendance-table-body');
+            tableBody.innerHTML = ''; // Clear existing rows
+
+            attendanceData.forEach(record => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${record.sno}</td>
+                    <td>${record.id}</td>
+                    <td>${record.username}</td>
+                    <td>${record.date}</td>
+                    <td>${record.checkin}</td>
+                    <td>${record.checkout}</td>
+                    <td>${record.workedTime}</td>
+                    <td><button class="update-button" onclick="updateAttendance(${record.sno})">Update</button></td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Function to handle the update button click (dummy function)
+        function updateAttendance(sno) {
+            alert(`Update functionality for record ${sno} not yet implemented.`);
+        }
+
+        // Initial rendering of the table
+        renderTableRows();
+    </script>
+</body>
+</html>
